@@ -22,7 +22,6 @@ func majorityElementOptimum(nums []int) int {
 	}
 
 	m := 0
-	fmt.Println("The majority value seems to be ", nums[index])
 	for i := 0; i < len(nums); i++ {
 		if nums[i] == nums[index] {
 			m++
@@ -55,7 +54,7 @@ func majorityElement(nums []int) int {
 
 }
 func main() {
-	nums := []int{1, 2, 3, 4, 4, 4, 4, 4, 4, 5, 5}
+	nums := []int{1, 2, 3, 4, 4, 5, 4, 4, 4}
 	m := majorityElementOptimum(nums)
 
 	fmt.Println("The major Element is ", m)
