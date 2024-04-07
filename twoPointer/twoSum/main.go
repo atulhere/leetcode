@@ -3,8 +3,8 @@ package main
 import "fmt"
 func main(){
 
-	nums :=[]int{2,7,16,25}
-	target := 9
+	nums :=[]int{1,2,4,4}
+	target := 8
 	arr := twoSum(nums, target)
 	fmt.Println("Pair for two sum is : ", arr)
 
