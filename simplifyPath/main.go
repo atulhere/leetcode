@@ -49,7 +49,7 @@ func (s *Stack) isEmpty()bool{
 
 func main(){
 
-	str := "/..."  
+	str := "/a//b////c/d//././/.." 
 
 	str = simplifyPath(str)
 
@@ -61,50 +61,62 @@ func simplifyPath(str string) string{
 
 	s :=Stack{}
 
-	word :=""; dot :=""; output := ""
+	word :="" 
+	output := ""
 
 	for _, v := range str{
 
-		
 		currentChar := string(v)
-		 
-		if (currentChar == "/" || currentChar =="." ){
 
-			if(word != ""){
-				s.push(word)
-				word =""
-			}
-			
-
-			if(currentChar == "."){
-				dot = dot + "."
-			}
-			if(dot == ".." && currentChar == "/"){
-				s.pop()
-				dot =""
-			}
-
-			if(dot != "" && dot !="." && dot !=".."){
-				s.push(dot)
-				dot =""
-			}
-			
-			continue
-		}else{
-			word = word + currentChar
-
-			dot = ""
+		if (currentChar == "/" && word == ""){
+			continue // move to the next iteration
 		}
 
+		if(currentChar !="/"){
+			word = word + currentChar
+		}
+
+		if(currentChar == "/" && word != ""){
+
+			if (word == "."){
+				word =""
+
+				continue // move to the next iteration because "."" represnt current directory
+			}else if(word ==".."){
+
+				// POP the last element if Stack is not empty
+				if(len(s.item)> 0){
+					s.pop()
+					word =""
+				}
+				word =""
+
+			}else{
+				// push the element into Stack
+				s.push(word)
+				word = ""
+			}
+
+		}
 	}
-	fmt.Println(s.item)
+
+	//if last char is not "/", handle this case
+	if(word == ".."){
+
+		if(len(s.item)> 0){
+			s.pop()
+		}
+	}
+	if(word !=".." && word !="." && word !=""){
+		s.push(word)
+	}
 	for _,v := range s.item{
 		output = output + "/"+ v.(string) 
 	}
 	
 	if(len(s.item) == 0){
 		return "/"
-
 	}
 	return output
+	
 }
