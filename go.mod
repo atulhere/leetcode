@@ -1,9 +1,10 @@
 module leetcode
 
-go 1.21.1
+go 1.22.1
 
 require (
 	github.com/BurntSushi/toml v1.2.1 // indirect
+	github.com/atulhere/go-utils v0.0.0-20240422081406-5c79cf4a3c29 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
 	github.com/karrick/godirwalk v1.12.0 // indirect
 	github.com/pkg/errors v0.8.1 // indirect
